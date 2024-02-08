@@ -31,9 +31,6 @@ jobs:
           pip3 install --upgrade pip
           pip3 install pycryptodome requests setuptools docopt
           curl https://rclone.org/install.sh | sudo bash
-          mkdir -p ~/.config/rclone/
-          unzip -P ${{ secrets.PASSWORD }} "$GITHUB_WORKSPACE"/tools/rclone.zip -d ~/.config/rclone/
-          curl -X POST -H "Content-Type: application/json" -d '{"msg_type": "post", "content": {"post": {"zh_cn": {"title": "HyperOS云端移植进度更新通知", "content": [[{"tag": "text", "text": "任务GITHUB WORKFLOWS编号为:${{ github.run_id }}         "}, {"tag": "text", "text": "环境配置完成!开始下载镜像并移植!"}]]}}}}' ${{ secrets.FEISHU }}
       - name: 2.克隆仓库
         run: |
           git clone --depth 1 https://github.com/tosasitill/HyperOS_Action_builder hyperos_port
